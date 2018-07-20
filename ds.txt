@@ -2,6 +2,10 @@
 [95,338,86,75,325,161,183,109,128,142,187,233]
 
 
+https://github.com/lmego/customer_segments/blob/master/customer_segments.ipynb
+https://github.com/yanndupis/Creating-Customer-Segments/blob/master/customer_segments.ipynb
+
+
 sns.heatmap(data, annot=True, linewidths=0.5, cmap="YlGnBu")
 pd.plotting.scatter_matrix(data, alpha = 0.3, figsize = (14,8), diagonal = 'kde');
 

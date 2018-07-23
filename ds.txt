@@ -1,20 +1,25 @@
-65,66,81,95,96,128,171,193,218,304,305,338,353,355,357,412,86,98,154,356,75,154,38,57,65,145,175,264,325,420,429,439,161,66,109,128,137,142,154,183,184,187,203,233,285,289,343
-[95,338,86,75,325,161,183,109,128,142,187,233]
+Regularization l1, l2
+unstructure data classification
+api development to derive data
+high biyas vs high variance =>
+
+high biyas (underfit) -> Training error and validation error will be high
+high variance (overfit) -> Training error will be low, but validation error will be high
 
 
-https://github.com/lmego/customer_segments/blob/master/customer_segments.ipynb
-https://github.com/yanndupis/Creating-Customer-Segments/blob/master/customer_segments.ipynb
+Uniform distribution -> no mode (uniformly distributed, all data points are same)
+Median is best for highly skewed distribution
 
-
-sns.heatmap(data, annot=True, linewidths=0.5, cmap="YlGnBu")
-pd.plotting.scatter_matrix(data, alpha = 0.3, figsize = (14,8), diagonal = 'kde');
-
+TF-IDF =>
+Term Frequency Inverse Document Frequency
 
 Normalization = feature - (subtracting the mean and then dividing the std)
-tfidf, endgram
+TF-IDF, n-gram
 Fourier Transformation
 ASCII
 logging
+
+NLTK, pyaudio, struct, Textblob, 
 
 
 
@@ -26,7 +31,7 @@ list(df)
 
 bias (how well the model fits the data) and variance (how much the model changes based on changes in the inputs).
 
-98,154,439,183
+
 
 df.query('action == "click"').id.nunique()
 df[['A','B','C','D']] = pd.get_dummies(df.prestige)

@@ -1,3 +1,24 @@
+Regression => 
+A measure of the relation between the mean value of one variable (e.g. output) and corresponding values of other variables (e.g. time and cost).
+
+Hyper-parameter => 
+Decision tree --> depth
+SVM  --> kernel / C (gama) # Grid search cross validation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 WEKA
 
 https://www.youtube.com/watch?v=5FUdrBq-WFo&list=PL9ooVrP1hQOFP9H8Y15DVGCA6GavhgJ8a
@@ -132,7 +153,7 @@ result.summary()
 
 MSCS
 
-I had programming knowledge from the begining as I worked as an automation engineer, then I started learning Python and I facinated by the simplicity of the language, I felt very easy to learn and I can do a lot more than java very easily
+
 
 import statsmodels.api as sm
 

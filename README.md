@@ -1,2 +1,2 @@
 # Chit-Sheet
-Data Scienct Chit-Sheet
+Data Science Chit-Sheet

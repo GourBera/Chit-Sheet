@@ -7,6 +7,7 @@ SVM  --> kernel / C (gama) # Grid search cross validation
 
 
 Music app - https://www1.brain.fm/app
+https://leetcode.com
 https://lagunita.stanford.edu/courses/DB/SQL/SelfPaced/courseware/ch-sql/seq-vid-introduction_to_sql/?child=first
 https://lagunita.stanford.edu/courses/DB/SQL/SelfPaced/courseware/ch-sql/seq-exercise-sql_movie_query_core/
 

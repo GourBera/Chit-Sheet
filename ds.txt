@@ -1,29 +1,3 @@
-Regression => 
-A measure of the relation between the mean value of one variable (e.g. output) and corresponding values of other variables (e.g. time and cost).
-
-
-
-Hyper-parameter => 
-Decision tree --> depth
-SVM  --> kernel / C (gama) # Grid search cross validation
-
-
-Music app - https://www1.brain.fm/app
-https://leetcode.com
-https://lagunita.stanford.edu/courses/DB/SQL/SelfPaced/courseware/ch-sql/seq-vid-introduction_to_sql/?child=first
-https://lagunita.stanford.edu/courses/DB/SQL/SelfPaced/courseware/ch-sql/seq-exercise-sql_movie_query_core/
-https://blog.udacity.com/2015/02/3-goals-for-your-linkedin-profile-to-achieve.html
-
-
-
-
-
-
-
-
-
-
-
 WEKA
 
 https://www.youtube.com/watch?v=5FUdrBq-WFo&list=PL9ooVrP1hQOFP9H8Y15DVGCA6GavhgJ8a
@@ -58,10 +32,23 @@ https://www.youtube.com/watch?v=0mm3djZ5KpQ&list=PL6tu16kXT9Pp3NFZgLbPZXEykeGQwx
 
 
 
+89000+89000+1147+15000+25000
 
+219147
+033991030
+8193371#
 1702000056
 9083253349 - SMU Project Steering Committee
+Vamsikrishna.B01@mphasis.com
 https://www.qasymphony.com/blog/64-test-metrics/
+
+Dataprovider-limitation
+parasoft training
+open gmail in new window
+@February2017
+206.122.3.250
+15.85.199.199
+test lab
 https://www.youtube.com/watch?v=Ri9jm3WDixE&list=RDH_-ikay9HoU
 
 
@@ -79,7 +66,11 @@ https://www.youtube.com/watch?v=Ri9jm3WDixE&list=RDH_-ikay9HoU
 
 
 
+gourbera@yahoo.com
+PaypalPass@218
 
+AYGPB4392N
+SlackPass@218
 
 Regularization l1, l2
 unstructure data classification
@@ -141,7 +132,7 @@ result.summary()
 
 MSCS
 
-
+I had programming knowledge from the begining as I worked as an automation engineer, then I started learning Python and I facinated by the simplicity of the language, I felt very easy to learn and I can do a lot more than java very easily
 
 import statsmodels.api as sm
 

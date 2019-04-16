@@ -1,1 +1,15 @@
 file_path = os.path.join(os.path.dirname(__file__), 'file1.txt')
+
+#-------------------
+from itertools import chain
+
+tup_list = [(1,2),(2,3), (3,4)]
+print(list(chain(* tup_list)))  # [1, 2, 2, 3, 3, 4]
+
+#-------------------
+sys.path.append('../')
+
+#-------------------
+ESC and then :wq
+
+#-------------------

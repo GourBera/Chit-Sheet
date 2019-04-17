@@ -1,10 +1,27 @@
 file_path = os.path.join(os.path.dirname(__file__), 'file1.txt')
+sys.path.append('../')
 
 #-------------------
 from itertools import chain
 
 tup_list = [(1,2),(2,3), (3,4)]
 print(list(chain(* tup_list)))  # [1, 2, 2, 3, 3, 4]
+
+#-------------------
+a = [1, 2, 2, 3, 3, 4]
+int(''.join(map(str, a)))   # 122334
+
+#-------------------
+import psycopg2
+
+con = psycopg2.connect(dbname= 'dbname', host= 'host', port= 'port', user= 'user', password= 'pwd')
+cur = con.cursor()
+
+cur.execute(Select * from tablename)
+result = cur.fetchall()
+
+cur.close()
+con.close()
 
 #-------------------
 sys.path.append('../')

@@ -34,5 +34,14 @@ PII Masking:
 https://github.com/madisonmay/CommonRegex
 
 #-------------------
+import sys
 
+if len(sys.argv) >= 1:
+    for i in xrange(len(sys.argv)):
+        print sys.argv[i]
+        
+#-------------------
+Handle path for different environment
+new_file = re.split(r'[///\\]', path)[-1][:8]
 
+#-------------------

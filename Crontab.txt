@@ -1,0 +1,38 @@
+https://crontab.guru/
+
+
+min, hour, day of month, month, day of week
+* * * * *
+
+
+crontab -l
+crontab -e => edit crontab file
+crontab -r => delete crontab file
+
+
+10,15 * * * * => 10 and 15 min 
+*/10 * * * * => every 10 min
+0 0 */3 * * => every 3 days
+0 0-5 * * * => every hour from 0 to 5
+
+every 30 min, mon-fri 9am to 5pm
+*/30 9-17 * * 1-5
+
+every 90 min
+0 */3 * * *
+30 1/3 * * *
+
+23:30 on the last day of every month
+30 23 28-31 * * test $(date -d tomorrow +%d) -eq 1 && / tmp/script.py
+
+
+
+
+
+
+
+
+
+
+
+

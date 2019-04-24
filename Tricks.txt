@@ -45,3 +45,10 @@ Handle path for different environment
 new_file = re.split(r'[///\\]', path)[-1][:8]
 
 #-------------------
+os.path.dirname(path) => '/foo/bar/item' is '/foo/bar'
+os.path.basename(path) => '/foo/bar/item' returns 'item'
+
+#-------------------
+
+
+

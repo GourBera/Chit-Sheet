@@ -56,6 +56,9 @@ def read_in_chunks(file_object, chunk_size=150):
             break
         yield data
 
+for piece in read_in_chunks(open(file_path)):
+    print(piece)
+
 #-------------------
 
 

@@ -69,7 +69,9 @@ print(end - start)
 #-------------------
 {:.4f}
 
+#-------------------
+dct.keys()[dct.values().index(value)] # get dict key by value
 
-
+#-------------------
 
 

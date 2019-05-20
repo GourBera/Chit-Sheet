@@ -1,0 +1,19 @@
+screen -ls
+
+screen -S name
+
+Attached => screen -r name 
+Detached => ctrl + a and d
+
+
+Delete => screen -X -S name quit
+
+
+
+
+
+
+
+
+
+

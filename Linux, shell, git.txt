@@ -1,0 +1,56 @@
+rm -rf name => delete directory
+find */*name* -exec ls -lh {} \;
+head -500 name.txt
+ESC and then :wq!
+
+echo "Hello" 1>file.txt => saving stdin/stdout/error(0,1,2) to text
+
+
+git push origin --delete name
+git branch -d name
+
+git branch
+git log
+git fetch
+
+git merge --squash branchname
+
+git pull origin
+
+git clone -b name link
+git clone -b name https://github.com/repo.git => copy particular branch
+
+
+
+
+
+
+Search:
+ls *.pdf
+ls *.txt
+ls -ltr *.txt
+ls -ltr
+
+
+
+Move:
+mv Download/*.pdf Books
+
+Download:
+curl 'http://google.com'
+
+Download and Save:
+curl -o google.html 'http://google.com'
+
+Read Files:
+cat .\Meeting.txt
+
+Remove Files:
+rm -i .\Meeting.txt
+rmdir -i .\Meeting.txt
+
+Search inside text:
+grep fish .\Meeting.txt
+
+Aliases:
+alias ll = 'ls -la'

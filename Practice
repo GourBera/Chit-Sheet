@@ -1,0 +1,14 @@
+dct_list = ['abc', 'cab', 'abcd', 'dcba', 'abcde']
+
+
+dct = dict()
+
+for i in dct_list:
+    dct_len = len(i)
+    if dct_len not in dct:
+        dct[dct_len] = []
+    dct[dct_len].append(i)
+
+print(dct)
+
+# {3: ['abc', 'cab'], 4: ['abcd', 'dcba'], 5: ['abcde']}

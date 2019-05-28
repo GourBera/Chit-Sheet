@@ -8,6 +8,16 @@ for i in dct_list:
         dct[dct_len] = []
     dct[dct_len].append(i)
 
-print(dct)
+or
 
-# {3: ['abc', 'cab'], 4: ['abcd', 'dcba'], 5: ['abcde']}
+for i in dct_list:
+    dct_len = len(i)
+    dct.setdefault(dct_len, []).append(i)
+    
+print(dct)      # {3: ['abc', 'cab'], 4: ['abcd', 'dcba'], 5: ['abcde']}
+
+#-------------------
+
+
+
+

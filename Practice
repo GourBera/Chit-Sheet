@@ -1,6 +1,5 @@
 dct_list = ['abc', 'cab', 'abcd', 'dcba', 'abcde']
 
-
 dct = dict()
 
 for i in dct_list:

@@ -18,6 +18,18 @@ print(dct)      # {3: ['abc', 'cab'], 4: ['abcd', 'dcba'], 5: ['abcde']}
 
 #-------------------
 
+frozenset() # immutable
+translate
+swapcase
+maketrans
+center
+count
+casefold
+discard
+clear
+pop
+popitem
+setdefault
 
-
+#-------------------
 

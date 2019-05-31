@@ -1,3 +1,6 @@
+https://www.w3resource.com/python-exercises/
+
+#-------------------
 file_path = os.path.join(os.path.dirname(__file__), 'file1.txt')
 sys.path.append('../')
 

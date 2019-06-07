@@ -36,7 +36,14 @@ setdefault
 dct = dict(a='20000', d='10', b='300', c='5000')
 print(dict(sorted(dct.items(), key=lambda item: item[0])))  # Key
 print(dict(sorted(dct.items(), key=lambda item: item[1])))  # Value
+print(dict(sorted(dct.items(), key=lambda item: item[1], reverse=True)))  # reverse order
+
+import operator
+print(sorted(dct.items(), key=operator.itemgetter(1)))
+
 print(dict(sorted(dct.items(), key=lambda item: len(item[1])))) # Value Len
+
+#-------------------
 
 print(sorted(dct_list, key=len))    # Sort list by len
 print(sorted(dct_list, reverse=True))    # Sort list in reverse order

@@ -76,5 +76,9 @@ print(end - start)
 dct.keys()[dct.values().index(value)] # get dict key by value
 
 #-------------------
+from collections import Counter
+c = Counter([0, 1, 2, 0]) # c is (basically) { 0 : 2, 1 : 1, 2 : 1 }
+
+#-------------------
 
 

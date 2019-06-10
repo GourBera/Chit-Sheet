@@ -1,0 +1,30 @@
+https://www.youtube.com/watch?v=t-5Ak9B1pr0
+https://www.youtube.com/watch?v=bsyjSW46TDg
+https://www.youtube.com/watch?v=WiaZJbGJyXo
+
+1. Iterator
+	for i in x:
+	   yield i
+
+2. Decorator
+3. Observer
+	Listener
+4. Strategy
+	1. csv.writer(sys.stdout)
+	2. csv.writer(open('file', 'w))
+	3. csv.writer(io.StrionIO)
+5. State
+	Case
+6. Singleton
+7. Template
+8. Adapter
+	Translator
+	getter | setter
+9. Facade
+	Interface | API
+10. Flyweight
+11. Abstract Factory
+12. Composite
+13. Transaction or Journaling
+
+40.

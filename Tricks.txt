@@ -80,5 +80,10 @@ from collections import Counter
 c = Counter([0, 1, 2, 0]) # c is (basically) { 0 : 2, 1 : 1, 2 : 1 }
 
 #-------------------
+val = 5
+val -=-1 # val = 6
+
+#-------------------
+
 
 

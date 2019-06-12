@@ -84,6 +84,11 @@ val = 5
 val -=-1 # val = 6
 
 #-------------------
+# Remove punctuation
+translate(None, string.punctuation)
+
+
+#-------------------
 
 
 

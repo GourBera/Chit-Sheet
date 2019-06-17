@@ -89,7 +89,8 @@ translate(None, string.punctuation)
 
 
 #-------------------
-
+value = datetime.strptime(val, '%m/%d/%Y')
+print("{}-{}-{}".format(value.year, value.month, value.day))
 
 #-------------------
 

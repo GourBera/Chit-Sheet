@@ -1,0 +1,52 @@
+DataFrame.index => get row count
+DataFrame.columns => get column count
+DataFrame.shape => get row and column sount
+
+DataFrame.astype('int64') => type cast
+
+isna => Detect missing values
+notna => Detect existing (non-missing) values
+
+copy(deep=True) => copy df
+
+df.loc[['viper', 'sidewinder']] => Access a group of rows and columns by label
+df.iloc[:3] => integer-location based indexing
+
+iteritems => iter over columns
+iterrows => iter over rows
+
+query => query over df
+
+apply => Apply a function along an axis of the DataFrame.
+applymap => Apply a function to a Dataframe elementwise.
+
+df.agg(['sum', 'min']) => Aggregate using one or more operations
+df.groupby(['Animal']).mean() => Group DataFrame or Series
+
+corr => pairwise correlation of columns
+
+drop => df.drop(columns=['B', 'C'])
+drop_duplicates => keep='first'
+duplicated
+
+reindex(['a','b'])
+rename => df.rename(str.lower, axis='columns')
+
+set_index => df.set_index('month')
+
+
+Missing data handling:
+dropna(axis=0, how={‘any’, ‘all’}, thresh=None, inplace=False)
+fillna(method={'ffill', 'backfill'})
+
+
+
+
+
+
+
+
+
+
+
+

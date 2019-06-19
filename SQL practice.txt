@@ -1,0 +1,40 @@
+1. Create View
+CREATE VIEW view_name AS SELECT column_name1, column_name2 FROM table_name WHERE CONDITION;
+
+2. 
+WHERE column_name IS NULL;
+WHERE column_name IS NOT NULL;
+
+3. INTO
+SELECT * INTO newtable FROM oldtable WHERE condition;
+
+4. 
+UNION -> omits duplicate records
+UNION ALL
+
+5.
+RIGHT 		-> RIGHT(EmpName,5)
+SUBSTRING 	-> SUBSTRING(EmpName,1,5)
+LTRIM
+RTRIM
+CONCAT
+REPLACE
+DISTINCT 
+EXCEPT 
+
+6. List of all table
+USE TestDB GO SELECT * FROM sys.Tables GO
+
+7. 
+SELECT GetDate();
+
+8.
+Employee_Name like 'E%';
+
+
+9. Rename Table name
+SP_RENAME TABLE 'SCOREBOARD', 'OVERALLSCORE'
+
+
+10. 
+SELECT Gender, case when Gender='i' then 'U' 

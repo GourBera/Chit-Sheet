@@ -93,5 +93,11 @@ value = datetime.strptime(val, '%m/%d/%Y')
 print("{}-{}-{}".format(value.year, value.month, value.day))
 
 #-------------------
+Marge 2 OrderDict
+marge = OrderDict(dct1.items() + dct2.items())
+
+#-------------------
+
+
 
 

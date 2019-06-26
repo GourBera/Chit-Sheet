@@ -45,6 +45,7 @@ T (transpose)
 df.groupby('A').pipe(lambda x: x.max() - x.min())
 nlargest(3) => top 3
 nsmallest()
+most_commons()
 
 
 
@@ -147,7 +148,7 @@ set_index => df.set_index('month')
 
 -------MISSING VALUE
 Missing data handling:
-dropna(axis=0, how={‘any’, ‘all’}, thresh=None, inplace=False)
+dropna(axis=0, how={â€˜anyâ€™, â€˜allâ€™}, thresh=None, inplace=False)
 fillna(method={'ffill', 'backfill'})
 
 

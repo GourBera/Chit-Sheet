@@ -70,8 +70,8 @@ merge = {**d1, **d2, **d3}
 print(merge)
 
 #-------------------
-Bagging -> Simple average
-Boosting -> Weighted average
+Bagging -> Simple average | week learner
+Boosting -> Weighted average | penalized
 
 
 #-------------------

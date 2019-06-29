@@ -1,4 +1,4 @@
-Bracket vs Dot Notation
+﻿Bracket vs Dot Notation
 & vs |
 list(df)
 
@@ -156,6 +156,10 @@ fillna(method={'ffill', 'backfill'})
 
 
 
+
+
+pd.melt(df2, id_vars='Country') => Except country column
+value_counts(normalize = True) => returns the %
 
 
 

@@ -68,6 +68,10 @@ get_dtype_counts()
 df.isin([0, 2])
 df.isin({'num_wings': [0, 3]})
 
+filter = df.col.isin([col1, col2])
+df[filter]
+
+
 
 
 s.where(s > 1, 10) => Replace with 10

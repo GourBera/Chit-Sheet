@@ -1,0 +1,42 @@
+# New project to be installed
+conda install anaconda-project
+
+# View the project requirement
+anaconda-project list-packages
+
+
+# Create virtual environment
+anaconda-project prepare
+
+# Create Conda environment
+conda create -n models python=3 -y
+
+
+# list commands
+anaconda-project list-commands
+
+# search-names
+anaconda-project run search-names <NAME>
+
+
+
+
+
+
+#### Create project
+
+mkdir mortgage_rates
+dc mortgage_rates
+anaconda-project init 
+
+
+
+anaconda-project add-packages python=3
+anaconda-project add-download <ENV_VARIABLE> <DOWNLOAD_URL>
+
+anaconda-project archive ../file.zip
+
+
+
+anaconda login --username datacamp-student --password datacamp1
+anaconda upload <zip-file> --package-type=project

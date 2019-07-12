@@ -75,5 +75,24 @@ Boosting -> Weighted average | penalized
 
 
 #-------------------
+BAONXXOLL
+BALLON -> 1
+
+from collections import Counter
+
+s = 'BAONXXOLL'
+word = ['B','A','L','L','O','N']
+
+counts = Counter(s)
+
+word_counts = []
+
+for w in word:
+    word_counts.append(counts.get(w, 0))
+
+print(min(word_counts))
+
+#-------------------
+
 
 

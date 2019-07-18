@@ -51,7 +51,9 @@ new_file = re.split(r'[///\\]', path)[-1][:8]
 os.path.dirname(path) => '/foo/bar/item' is '/foo/bar'
 os.path.basename(path) => '/foo/bar/item' returns 'item'
 
-#-------------------
+
+
+#####-------------------
 def read_in_chunks(file_object, chunk_size=150):
     while True:
         data = file_object.read(chunk_size)
@@ -61,8 +63,22 @@ def read_in_chunks(file_object, chunk_size=150):
 
 for piece in read_in_chunks(open(file_path)):
     print(piece)
+    
+#------------------
+def read_chunk(infile, start_pos, max_chars=1000):    
+    infile.seek(start_pos)
+    return infile.read(max_chars)
 
-#-------------------
+infile = open(file_location, 'r')
+infile.seek(0, os.SEEK_END)
+file_len = infile.tell()
+
+while start < file_len:
+    input_string = read_ahead(infile, start)
+    
+
+
+#####-------------------
 from timeit import default_timer as timer
 
 start = timer()

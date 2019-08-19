@@ -167,6 +167,9 @@ value_counts(normalize = True) => returns the %
 
 
 
+a = np.array([1,2,3,4])
+b = np.array([5,6,7,8])
+np.column_stack((a,b)) #[[1,5],[2,6],[3,7],[4,8]]
 
 
 

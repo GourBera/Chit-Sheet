@@ -108,6 +108,10 @@ translate(None, string.punctuation)
 value = datetime.strptime(val, '%m/%d/%Y')
 print("{}-{}-{}".format(value.year, value.month, value.day))
 
+# Format date in yyyy-mm-dd
+data.DateTime = pd.to_datetime(data.DateTime)
+
+
 #-------------------
 Marge 2 OrderDict
 marge = OrderDict(dct1.items() + dct2.items())

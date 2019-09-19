@@ -49,6 +49,9 @@ Remove Files:
 rm -i .\Meeting.txt
 rmdir -i .\Meeting.txt
 
+rm -rf mydir
+
+
 Search inside text:
 grep fish .\Meeting.txt
 

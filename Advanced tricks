@@ -93,6 +93,9 @@ for w in word:
 print(min(word_counts))
 
 #-------------------
+from itertools import groupby
+print(*[(len(list(c)), int(k)) for k, c in groupby('899955521000')]) #(1, 8) (3, 9) (3, 5) (1, 2) (1, 1) (3, 0)
+
 
 
 

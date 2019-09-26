@@ -127,7 +127,20 @@ print({**d1, **d2})
 
 
 #-------------------
+from collections import defaultdict
+
+strr = 'india'
+
+dct = defaultdict(int)
+
+for i in strr:
+    dct[i] += 1
+
+print(dct) # {'i': 2, 'n': 1, 'd': 1, 'a': 1}
+
+
+#-------------------
 
 
 
-
+#-------------------

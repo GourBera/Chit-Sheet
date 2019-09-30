@@ -10,6 +10,31 @@
 	argv
 	path
 
+#--------------------
+from collections import defaultdict
+
+dct1 = defaultdict(list)
+dct1['x'].append(123)
+
+
+#--------------------
+from collections import defaultdict
+
+strr = 'india'
+
+dct = defaultdict(int)
+
+for i in strr:
+    dct[i] += 1
+
+print(dct)
+
+from collections import Counter
+
+print(Counter(strr))
+
+
+#--------------------
 
 
 

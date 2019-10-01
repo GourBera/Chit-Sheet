@@ -101,7 +101,31 @@ for i,j in groupby('899955521000'):
     print((len(list(j)), int(i)), end='')
     
 #-------------------
+b=20
 
+def fuct(a=None):
+    global b
+    if a:
+        print('a = {}'.format(a))
+    else:
+        print('b = {}'.format(b))
+
+
+fuct()
+
+
+#-------------------
+
+
+
+
+
+
+
+
+
+
+#-------------------
 
 
 

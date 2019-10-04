@@ -122,6 +122,14 @@ for i in sys.argv:
 
 #-------------------
 
+t = ['Beta', 'beta', 'alpha', 'Alpha']
+print(sorted(t, key=str.lower, reverse=True)) 
+# ['Beta', 'beta', 'alpha', 'Alpha']
+
+
+#-------------------
 
 
 
+
+#-------------------

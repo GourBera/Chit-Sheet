@@ -1,3 +1,6 @@
+https://www.journaldev.com/19103/python-collections
+
+
 dct_list = ['abc', 'cab', 'abcd', 'dcba', 'abcde']
 
 dct = dict()

@@ -103,6 +103,8 @@ print(*[(len(list(c)), int(k)) for k, c in groupby('899955521000')]) #(1, 8) (3,
 for i,j in groupby('899955521000'):
     print((len(list(j)), int(i)), end='')
     
+[print(k, *list(c)) for k, c in groupby('899955521000')]
+    
 #-------------------
 b=20
 

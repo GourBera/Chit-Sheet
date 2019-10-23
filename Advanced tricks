@@ -156,3 +156,12 @@ def fibonacci(n):
 if __name__ == '__main__':
     n = int(input())
     print(list(map(cube, fibonacci(n))))
+
+
+#-------------------
+d = [2,5,8,0]
+[print(x, end=' ') for x in d]
+
+
+
+#-------------------

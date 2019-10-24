@@ -175,7 +175,10 @@ class OrderedCounter(Counter, OrderedDict):
 
 
 #-------------------
+strr = '100,000,000.000'
 
+import re
+print(*re.split(r'[.,]+', strr.strip('., ')), sep='\n')
 
 
 #-------------------

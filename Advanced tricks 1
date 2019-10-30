@@ -25,7 +25,10 @@ else:
     print('done')
 
 #-------------------------
+#---- dir(lst) -----------
+lst = [1,3,5,2,4]
 
+print([x for x in dir(lst) if not str(x).startswith('__')])
 
 #-------------------------
 

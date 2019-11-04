@@ -1,5 +1,8 @@
 from operator import itemgetter, attrgetter
 
+install packages in same folder:
+pip3 install pandas -t .
+
 #-------------------------
 import re
 count = 1

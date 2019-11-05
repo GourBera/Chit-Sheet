@@ -58,13 +58,14 @@ print(stdcalc['sum'](9,3))
 print(stdcalc['subtract'](9,3))
 
 #-------------------------
-
-
-
+test = [1,2,3,4,2,2,3,1,4,4,4]
+print(max(set(test), key=test.count)) # 4
 
 #-------------------------
+import itertools
+test = [[-1, -2], [30, 40], [25, 35]]
+print(list(itertools.chain.from_iterable(test)))
 
-
-
+# [-1, -2, 30, 40, 25, 35]
 
 #-------------------------

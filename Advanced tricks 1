@@ -69,8 +69,7 @@ print(list(itertools.chain.from_iterable(test)))
 # [-1, -2, 30, 40, 25, 35]
 
 #-------------------------
-
-
+print({str(i): i for i in range(10) if i % 2 == 0})
 
 #-------------------------
 

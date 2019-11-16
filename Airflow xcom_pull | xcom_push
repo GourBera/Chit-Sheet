@@ -1,0 +1,51 @@
+import sys
+import ast
+import boto3
+import airflow
+from airflow import DAG
+from utility import *
+from datetime import datetime,timedelta
+from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.python_operator import PythonOperator
+
+sys.path.append('/')
+
+
+# Default Arguments
+args = {
+    'owner': 'airflow',
+    'depends_on_past': False,
+    'start_date': datetime(2019, 11, 16),
+    'retries': 1,
+    'retry_delay': timedelta(minutes=1)}
+
+
+dag = DAG('final_test', schedule_interval="@once", default_args=args)
+
+
+# inside a PythonOperator called 'pushing_task'
+def push_fn():
+    return read_file('7-nov-bucket-1', 'dag1.json')
+
+
+# inside another PythonOperator where provide_context=True
+def pull_fn(**context):
+    value = context['task_instance'].xcom_pull(task_ids='pushing_task')
+    print(value)
+
+
+push1 = PythonOperator(
+    task_id='pushing_task',
+    dag=dag,
+    python_callable=push_fn,
+)
+
+
+pull = PythonOperator(
+    task_id='pull_fn',
+    dag=dag,
+    provide_context=True,
+    python_callable=pull_fn,
+)
+
+pull << push1

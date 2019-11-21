@@ -10,6 +10,13 @@ no = '9456524356'
 [print('YES' if re.match(r'[789]\d{9}$',no) else 'NO') for _ in range(count)]
 
 #-------------------------
+strr = '100,000,000.000'
+
+import re
+print(*re.split(r'[.,]+', strr.strip('., ')), sep='\n')
+
+
+#-------------------------
 dct = dict(a=10, b=20, c=30, d=40)
 print(*dct)
 

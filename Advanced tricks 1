@@ -79,7 +79,14 @@ print(list(itertools.chain.from_iterable(test)))
 print({str(i): i for i in range(10) if i % 2 == 0})
 
 #-------------------------
+s = 'aaddbbccaa'
 
+count = 0
+for i in range(len(s)):
+    if s[i: i+2] == 'aa':
+        count += 1
+
+print(count)
 
 
 #-------------------------

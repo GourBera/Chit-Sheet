@@ -73,6 +73,12 @@ merge = {**d1, **d2, **d3}
 print(merge)
 
 #-------------------
+x, *y = 1,2,3,4,5,7,8
+
+print(x, y) # 1 [2, 3, 4, 5, 7, 8]
+
+
+#-------------------
 Bagging -> Simple average | week learner | bootstrap resamplening
 Boosting -> Weighted average | penalized
 

@@ -1,3 +1,7 @@
+AWS VPC => EC2 -> Security Group -> Inbound -> Edit -> Source -> Anywhere
+
+
+
 1. Create View
 CREATE VIEW view_name AS SELECT column_name1, column_name2 FROM table_name WHERE CONDITION;
 

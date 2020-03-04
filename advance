@@ -1,0 +1,38 @@
+def MakeClass(x):
+  class Dog:
+    def __init__(self, name):
+      self.name = name
+    def print_value(self):
+      print(x)
+      
+  return Dog
+  
+  
+cls = MakeClass(10)
+print(cls)
+d = cls('Gour')
+print(d.name)
+print(d.print_value())
+
+
+def func(x):
+  if x == 1:
+    def rv():
+      print('x=1')
+  else:
+    def rv():
+      print('x!=1')
+  return rv
+  
+  
+new = func(1)
+new()
+
+
+import inspect
+from queue import Queue
+
+print(inspect.getmembers(new))
+print(inspect.getsource(new))
+
+print(inspect.getsource(Queue))

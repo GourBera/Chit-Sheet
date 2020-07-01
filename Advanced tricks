@@ -200,10 +200,18 @@ else:
 #-------------------
 directory = "D:\\SaS\\data_source\\"
 
+df_info = dict()
+
 for root,dirs,files in os.walk(directory):
     for file in files:
         if file.endswith(".csv"):
-            print(file)
+            df_name = f"df_{file.split('.')[0]}".lower()
+            df_path = os.path.join(directory, file)
+            df = pd.read_csv(df_path)
+            df[df_name] = 'yes'
+            df_info[df_name] = df            
+                        
+df_list = list(df_info)
 
 #-------------------
 

@@ -214,7 +214,7 @@ for root,dirs,files in os.walk(directory):
 df_list = list(df_info)
 
 #-------------------
-
+os.path.splitext(file_path)
 
 
 #-------------------

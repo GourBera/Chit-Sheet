@@ -24,7 +24,8 @@ RTRIM
 CONCAT
 REPLACE
 DISTINCT 
-EXCEPT 
+EXCEPT
+ROUND
 
 6. List of all table
 USE TestDB GO SELECT * FROM sys.Tables GO
@@ -42,3 +43,7 @@ SP_RENAME TABLE 'SCOREBOARD', 'OVERALLSCORE'
 
 10. 
 SELECT Gender, case when Gender='i' then 'U' 
+
+11. LIKE vs ILIKE -> ILIKE is case insensitive
+
+

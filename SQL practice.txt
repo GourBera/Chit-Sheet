@@ -47,3 +47,20 @@ SELECT Gender, case when Gender='i' then 'U'
 11. LIKE vs ILIKE -> ILIKE is case insensitive
 
 
+12. EXTRACT() | AGE() | TO_CHAR()
+  -- SELECT EXTRACT(YEAR FROM doj) as doj_year FROM Emp;
+  -- SELECT AGE(doj) FROM Emp; -How old
+  -- SELECT TO_CHAR(doj, 'MONTH-YYYY') | 'MONTH/YYYY' | 'mon/ddYYYY' | 'MM/ddYYYY' etc.
+  
+  No. of Employees joined on monday
+  select count(*) for Emp where extract(dow, doj) == 1;
+  
+  No.of Employees whose salary is greater then the average salary 
+  Select count(*) from Emp where emp_sal > (select AVG(emp_sal) from Emp);
+  
+  Job title with the same length - Self join
+  select t1.job_title, t2.jobtitle, t1.title_eln from Emp as t1 inner join Emp as t2 on t1.job_title != t2.job_title and t1.length = t2.length;
+  
+  
+  
+

@@ -62,5 +62,5 @@ SELECT Gender, case when Gender='i' then 'U'
   select t1.job_title, t2.jobtitle, t1.title_eln from Emp as t1 inner join Emp as t2 on t1.job_title != t2.job_title and t1.length = t2.length;
   
   
-  
+  ALTER TABLE Emp ADD FOREIGN KEY (process_fk) REFERENCES process(emp_id) ON DELETE CASCADE;
 

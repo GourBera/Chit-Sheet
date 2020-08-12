@@ -141,6 +141,8 @@ print(dct) # {'i': 2, 'n': 1, 'd': 1, 'a': 1}
 
 #-------------------
 
-
+print('abcabcabcabc'.split('c', -1))    # ['ab', 'ab', 'ab', 'ab', '']
+print('abcabcabcabc'.split('c', 1))     # ['ab', 'abcabcabc']
+print('abcabcabcabc'.split('c', 2))     # ['ab', 'ab', 'abcabc']
 
 #-------------------

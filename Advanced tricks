@@ -52,7 +52,21 @@ print(sorted(dct_list, key=len))    # Sort list by len
 print(sorted(dct_list, reverse=True))    # Sort list in reverse order
 
 #-------------------
+import re
 
+l1 = ['python', 'py4you', 'coding', 'pyth0n', 'Hello3', 'hello1']
+print(sorted(l1, key=lambda x: any(s.isdigit() for s in x)))
+
+
+def get_digit(s):
+    m = re.search(r"\d+", s)
+    return int(m.group() if m else -1)
+
+
+print(sorted(l1, key=get_digit))  # ['python', 'coding', 'pyth0n', 'hello1', 'Hello3', 'py4you']
+
+
+#-------------------
 a = [1, 2, 3]
 b = [1, 2, 3, 4]
 c = [1, 2, 3, 4, 5]

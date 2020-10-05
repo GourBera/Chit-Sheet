@@ -232,3 +232,19 @@ os.path.splitext(file_path)
 
 
 #-------------------
+async def f(x, y):
+    pass
+    
+def g(x, y):
+    pass
+    
+inspect.signature(f) == inspect.signatute(g)    # True
+
+
+
+
+
+
+#-------------------
+
+

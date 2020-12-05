@@ -11,6 +11,10 @@ tup_list = [(1,2),(2,3), (3,4)]
 print(list(chain(* tup_list)))  # [1, 2, 2, 3, 3, 4]
 
 #-------------------
+import pymysql
+pymysql.install_as_MySQLdb()
+
+#-------------------
 a = [1, 2, 2, 3, 3, 4]
 int(''.join(map(str, a)))   # 122334
 

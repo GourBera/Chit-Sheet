@@ -38,7 +38,7 @@ setdefault
 
 dct = dict(a='20000', d='10', b='300', c='5000')
 print(dict(sorted(dct.items(), key=lambda item: item[0])))  # Key
-print(dict(sorted(dct.items(), key=lambda item: item[1])))  # Value {'d': '10', 'a': '20000', 'b': '300', 'c': '5000'}
+print(dict(sorted(dct.items(), key=lambda item: item[1])))  # Value {'d': '10', 'b': '300', 'c': '5000', 'a': '20000'}
 print(dict(sorted(dct.items(), key=lambda item: item[1], reverse=True)))  # reverse order
 
 import operator

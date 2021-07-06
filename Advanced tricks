@@ -55,6 +55,7 @@ print(ast.literal_eval('[1,2,3]'))
 #-------------------
 list of list remove duplicate [[1,2],[1,2][3,4]] = [[1,2], [3,4]]
 
+
 import itertools
 
 lst = [[1,2],[1,2], [3,4]]
@@ -75,6 +76,7 @@ clear
 pop
 popitem
 setdefault
+class method vs static method
 
 #-------------------
 

@@ -14,9 +14,9 @@ for i in dct_list:
 
 or
 
-for i in dct_list:
-    dct_len = len(i)
-    dct.setdefault(dct_len, []).append(i)
+for i in dct_list:    
+    dct.setdefault(len(i), []).append(i)
+    
     
 print(dct)      # {3: ['abc', 'cab'], 4: ['abcd', 'dcba'], 5: ['abcde']}
 

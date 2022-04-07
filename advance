@@ -1,11 +1,11 @@
 def MakeClass(x):
-  class Dog:
+  class Human:
     def __init__(self, name):
       self.name = name
     def print_value(self):
       print(x)
       
-  return Dog
+  return Human
   
   
 cls = MakeClass(10)

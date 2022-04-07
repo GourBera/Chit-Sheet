@@ -1,0 +1,13 @@
+>>> all([True, True])
+True
+>>> all([True, False])
+False
+>>> all([])
+True
+>>> all([[]])
+False
+>>> all([[[]]])
+True
+
+
+---------------------------------------------

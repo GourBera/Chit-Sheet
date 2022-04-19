@@ -1,1 +1,12 @@
+Functions are first-class citizens in Python
+Functions can be passed as arguments to other functions
+Functions can be returned as values from other functions
+Functions can be assigned to variables and stored in data structures
 
+
+def add_numbers(a, b):
+    return a + b
+
+addition = [add_numbers]
+print(addition[0])
+print(addition[0](10, 20))    #30

@@ -1,0 +1,22 @@
+https://www.toptal.com/python/python-design-patterns#:~:text=According%20to%20GOF%20principles%2C%20there,%2C%20Strategy%2C%20Template%2C%20Visitor.
+
+==> Behavioral Patterns
+ITERATOR
+CHAIN OF RESPONSIBILITY
+
+==> Creational Patterns
+* SINGLETON
+    Only one instance of a given class exists during runtime. 
+    It is easier to simply create one instance intentionally and use it instead of implementing the Singleton pattern.
+* DEPENDENCY INJECTION
+    Implementing loose couplings, and it helps make our application maintainable and extendable
+* DECORATOR
+
+==> Structural Patterns
+* FACADE -> Interface
+    Facade is an elegant Python design pattern. It's a perfect way of streamlining the interface.
+* ADAPTER -> Altering the interface
+    Facades are used for interface simplification, Adapters are all about altering the interface. 
+    Like using a cow when the system is expecting a duck.
+    
+    

@@ -1,3 +1,4 @@
+"""
 https://www.toptal.com/python/python-design-patterns#:~:text=According%20to%20GOF%20principles%2C%20there,%2C%20Strategy%2C%20Template%2C%20Visitor.
 
 ==> Behavioral Patterns
@@ -6,7 +7,7 @@ CHAIN OF RESPONSIBILITY
 
 ==> Creational Patterns
 * SINGLETON
-    Only one instance of a given class exists during runtime. 
+    Only one instance of a given class exists during runtime.
     It is easier to simply create one instance intentionally and use it instead of implementing the Singleton pattern.
 * DEPENDENCY INJECTION
     Implementing loose couplings, and it helps make our application maintainable and extendable
@@ -16,7 +17,520 @@ CHAIN OF RESPONSIBILITY
 * FACADE -> Interface
     Facade is an elegant Python design pattern. It's a perfect way of streamlining the interface.
 * ADAPTER -> Altering the interface
-    Facades are used for interface simplification, Adapters are all about altering the interface. 
+    Facades are used for interface simplification, Adapters are all about altering the interface.
     Like using a cow when the system is expecting a duck.
-    
-    
+"""
+# ==> Creational Patterns
+# Singleton pattern
+"""
+The Singleton pattern is a creational design pattern that ensures a class has only one instance while 
+providing a global access point to this instance. It is often useful when exactly one object is needed to 
+coordinate actions across the system.
+"""
+
+
+class Singleton:
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+s1 = Singleton()
+s2 = Singleton()
+print(s1 is s2) # True
+
+
+"""
+In this example, the __new__ method is overridden to return the same instance of the class, 
+if it has already been created. Otherwise, it creates a new instance of the class and 
+assigns it to the _instance class variable.
+"""
+
+# Another way to implement the Singleton pattern in Python is to use a decorator:
+def singleton(cls):
+    _instances = {}
+    def get_instance():
+        if cls not in _instances:
+            _instances[cls] = cls()
+        return _instances[cls]
+    return get_instance
+
+@singleton
+class MySingleton:
+    pass
+
+s1 = MySingleton()
+s2 = MySingleton()
+print(s1 is s2) # True
+
+"""
+In this example, the singleton decorator takes a class as an argument, and 
+1returns a function that creates an instance of the class if it does not exist, otherwise it returns the existing instance.
+
+It's worth noting that the Singleton pattern can be an anti-pattern, and it should be used with caution, 
+as it can make the code more difficult to test and maintain, by hiding dependencies and making the system hard to understand. 
+A better approach would be to use dependency injection to provide a single instance of a class 
+to the parts of the system that need it.
+"""
+
+
+
+# Factory pattern
+"""
+The Factory pattern is a creational design pattern that provides an interface for creating objects in a super class, 
+but allows subclasses to alter the type of objects that will be created. It's used to create objects without 
+specifying the exact class of object that will be created.
+"""
+class Dog:
+    def __init__(self, name):
+        self._name = name
+
+    def speak(self):
+        return "Woof!"
+
+class Cat:
+    def __init__(self, name):
+        self._name = name
+
+    def speak(self):
+        return "Meow!"
+
+def get_pet(pet="dog"):
+    pets = dict(dog=Dog("Hope"), cat=Cat("Peace"))
+    return pets[pet]
+
+d = get_pet("dog")
+print(d.speak())
+
+c = get_pet("cat")
+print(c.speak())
+
+"""
+In this example, the get_pet function acts as a factory, it takes an argument pet which is used to 
+determine which type of object to create and return. Here, it returns an instance of the Dog class or the Cat class.
+"""
+
+# Another way to implement the Factory pattern in Python is to use a Factory class
+
+class PetFactory:
+    def __init__(self):
+        self._pets = {}
+
+    def register_pet(self, pet_type, pet_class):
+        self._pets[pet_type] = pet_class
+
+    def create_pet(self, pet_type, *args, **kwargs):
+        if pet_type not in self._pets:
+            raise ValueError(f"Invalid pet_type: {pet_type}")
+        return self._pets[pet_type](*args, **kwargs)
+
+factory = PetFactory()
+factory.register_pet("dog", Dog)
+factory.register_pet("cat", Cat)
+
+d = factory.create_pet("dog", "Hope")
+print(d.speak())
+
+c = factory.create_pet("cat", "Peace")
+print(c.speak())
+
+"""
+In this example, the PetFactory class acts as a factory, it has methods to register different types of 
+pets and create them. The create_pet method takes a pet_type argument and creates an instance of the 
+corresponding class, registered for that type.
+
+The Factory pattern is useful when you want to decouple the process of creating objects from the 
+parts of the system that use them. It can also be used to create objects that are selected at runtime, 
+based on configuration or input data.
+"""
+
+
+# Observer pattern
+"""
+The Observer pattern is a behavioral design pattern that allows objects to be notified of changes in other objects. 
+It's used to establish a one-to-many relationship between objects, where one object (the subject) is being observed 
+by multiple other objects (the observers).
+"""
+
+class Subject:
+    def __init__(self):
+        self._observers = []
+
+    def attach(self, observer):
+        self._observers.append(observer)
+
+    def detach(self, observer):
+        self._observers.remove(observer)
+
+    def notify(self):
+        for observer in self._observers:
+            observer.update()
+
+class Observer:
+    def update(self):
+        pass
+
+class ConcreteObserver(Observer):
+    def update(self):
+        print("Received update notification")
+
+subject = Subject()
+observer = ConcreteObserver()
+subject.attach(observer)
+subject.notify() # "Received update notification"
+
+
+"""
+In this example, the Subject class maintains a list of observers, and provides methods to attach and detach observers. 
+The notify method is used to send a notification to all the attached observers. The Observer class is an abstract class that 
+defines the update method, which will be overridden by the concrete observer.
+"""
+
+# Another way to implement the Observer pattern in Python is to use the observer pattern from the abstract library
+
+from abc import ABC, abstractmethod
+from collections.abc import Iterable
+from collections import deque
+
+class Observer(ABC):
+    @abstractmethod
+    def update(self, *args, **kwargs):
+        pass
+
+class Observable(Iterable):
+    def __init__(self):
+        self._observers = deque()
+
+    def register(self, observer: Observer):
+        self._observers.append(observer)
+
+    def unregister(self, observer: Observer):
+        self._observers.remove(observer)
+
+    def notify(self, *args, **kwargs):
+        for observer in self._observers:
+            observer.update(*args, **kwargs)
+
+    def __iter__(self):
+        return iter(self._observers)
+
+class ConcreteObserver(Observer):
+    def update(self, *args, **kwargs):
+        print("Received update notification")
+
+subject = Observable()
+observer = ConcreteObserver()
+subject.register(observer)
+subject.notify() # "Received update notification"
+
+"""
+In this example, the Observable class implements the Iterable interface and it has methods to 
+register, unregister and notify observers. The Observer class is an abstract base class that defines the update method that 
+is called by the notify method of the Observable class.
+
+The Observer pattern is useful when you have multiple objects that need to be notified of changes 
+in other objects and you want to decouple the objects from one another. It's commonly used in GUI programming, 
+where a change in one widget needs to be propagated to other widgets, or in event-driven systems, 
+where objects need to be notified of events.
+"""
+
+
+
+# Decorator pattern
+"""
+The Decorator pattern is a structural design pattern that allows behavior to be added to an individual object, 
+either statically or dynamically, without affecting the behavior of other objects from the same class.
+"""
+class Component:
+    def operation(self):
+        pass
+
+class ConcreteComponent(Component):
+    def operation(self):
+        return "ConcreteComponent"
+
+class Decorator(Component):
+    def __init__(self, component):
+        self._component = component
+
+    def operation(self):
+        return self._component.operation()
+
+class ConcreteDecoratorA(Decorator):
+    def operation(self):
+        return f"ConcreteDecoratorA({self._component.operation()})"
+
+class ConcreteDecoratorB(Decorator):
+    def operation(self):
+        return f"ConcreteDecoratorB({self._component.operation()})"
+
+component = ConcreteComponent()
+decoratorA = ConcreteDecoratorA(component)
+decoratorB = ConcreteDecoratorB(decoratorA)
+print(decoratorB.operation())
+
+
+"""
+In this example, the Component class is an interface that defines the operation method, which is overridden by the 
+ConcreteComponent class. The Decorator class is an abstract class that also implements the Component interface, and 
+it has a reference to an instance of the Component class. The ConcreteDecoratorA and ConcreteDecoratorB classes are 
+concrete decorator classes that add behavior to the Component instance they decorate.
+
+In this example, the decoratorB instance is composed of decoratorA which is decorated by ConcreteComponent, 
+So the final result is : "ConcreteDecoratorB(ConcreteDecoratorA(ConcreteComponent))"
+
+Another way to implement the Decorator pattern in Python is to use the functools.wraps decorator, 
+which is a convenience decorator that allows the decorated function to be used as if it were the original function:
+"""
+
+from functools import wraps
+
+def decorator(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print("Decorated function")
+        return func(*args, **kwargs)
+    return wrapper
+
+@decorator
+def function():
+    return "Function"
+
+print(function())
+
+"""
+In this example, the decorator function is a decorator that adds behavior to the function function. 
+The @decorator syntax is equivalent to function = decorator(function), and it's called function decoration.
+
+The Decorator pattern is useful when you need to add behavior to an individual object without changing the behavior of 
+other objects from the same class. It's commonly used in GUI programming, where you need to add behavior to a widget 
+without changing the behavior of other widgets, or in systems where you need to add behavior to an object at runtime.
+"""
+
+# Facade pattern
+
+"""
+The Facade pattern is a structural design pattern that provides a simplified interface to a complex system of 
+classes, libraries or frameworks. The Facade pattern makes it easier to use the complex system by providing a single, 
+unified interface to the functionality that is provided by the system.
+"""
+class SubsystemA:
+    def operation1(self):
+        pass
+    def operation2(self):
+        pass
+
+class SubsystemB:
+    def operation1(self):
+        pass
+    def operation2(self):
+        pass
+
+class Facade:
+    def __init__(self):
+        self._subsystemA = SubsystemA()
+        self._subsystemB = SubsystemB()
+    def operation(self):
+        self._subsystemA.operation1()
+        self._subsystemB.operation1()
+
+facade = Facade()
+facade.operation()
+
+"""
+In this example, the SubsystemA and SubsystemB classes are complex subsystems that provide functionality. 
+The Facade class is a simple interface to the functionality provided by the subsystems. 
+It has a reference to instances of the SubsystemA and SubsystemB classes and it provides a 
+single method operation that calls the operation1 of both subsystemA and subsystemB.
+
+The Facade pattern is useful when you need to provide a simple interface to a complex system, or when you need to 
+hide the complexity of a system from clients. It's commonly used in libraries and frameworks, where you need to provide a 
+simple interface to a complex system of classes. It also promotes low coupling and high cohesion.
+
+It is a simple and effective way to provide a unified interface to a complex system, hiding the complexity of the 
+underlying components, and making it easier to use the system.
+"""
+
+
+# Iterator pattern
+"""
+The Iterator pattern is a behavioral design pattern that allows you to traverse a collection of 
+objects without exposing the internal implementation of the collection. This pattern provides a way to 
+access the elements of an aggregate object sequentially without exposing its underlying representation.
+"""
+
+class Iterator:
+    def __init__(self, collection):
+        self._index = 0
+        self._collection = collection
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._index < len(self._collection):
+            item = self._collection[self._index]
+            self._index += 1
+            return item
+        else:
+            raise StopIteration
+
+class Collection:
+    def __init__(self):
+        self._items = []
+
+    def add_item(self, item):
+        self._items.append(item)
+
+    def iterator(self):
+        return Iterator(self._items)
+
+collection = Collection()
+collection.add_item("item1")
+collection.add_item("item2")
+collection.add_item("item3")
+
+for item in collection.iterator():
+    print(item)
+
+"""
+In this example, the Iterator class provides an iterator for the Collection class. 
+The Collection class is a simple class that stores a list of items, and the Iterator class provides a way to 
+iterate over the items in the collection.
+
+The Iterator class has a reference to the collection and an internal index that keeps track of the 
+current position in the collection. The Iterator class implements the __iter__ and __next__ methods, 
+which are used by the for-in loop to iterate over the collection. The __iter__ method returns the iterator object, 
+and the __next__ method returns the next item in the collection.
+
+The Iterator pattern is useful when you need to iterate over a collection of objects but don't want to 
+expose the underlying implementation of the collection. This pattern also allows to change the underlying collection 
+without affecting the client code. Also, it is useful to support multiple traversals of the collection.
+
+It is a simple and effective way to traverse a collection of objects, abstracting the details of the 
+collection's implementation and providing a consistent interface for traversing the collection.
+"""
+
+
+# State pattern
+"""
+The State pattern is a behavioral design pattern that allows an object to change its behavior based on 
+its internal state. The pattern allows an object to have different behavior depending on its internal state, 
+without having to change its class.
+"""
+
+class State:
+    def handle(self):
+        pass
+
+class StateA(State):
+    def handle(self):
+        print("Handling in State A")
+
+class StateB(State):
+    def handle(self):
+        print("Handling in State B")
+
+class Context:
+    def __init__(self):
+        self._state = None
+
+    def set_state(self, state):
+        self._state = state
+
+    def handle(self):
+        self._state.handle()
+
+context = Context()
+context.set_state(StateA())
+context.handle() # Handling in State A
+context.set_state(StateB())
+context.handle() # Handling in State B
+
+"""
+In this example, the State class is an interface for different states, the StateA and StateB classes are 
+concrete implementations of the State interface and they define the behavior of the Context class in different states.
+
+The Context class has a reference to the current state and it uses the state's handle method to perform the operation. 
+The handle method of the Context class calls the handle method of the current state object, which changes the behavior of the 
+Context class based on the current state.
+
+The State pattern is useful when an object's behavior changes based on its internal state, 
+and when you need to encapsulate the behavior of the object in different states. It makes it easy to add new 
+states and change the behavior of an object without changing its class, and it promotes low coupling and high cohesion.
+
+It is a powerful way to implement state-dependent behavior without having to use large switch statements or 
+if-else chains, and it allows to separate the code for each state, making it more readable and maintainable.
+"""
+
+
+# Visitor pattern
+
+"""
+The Visitor pattern is a behavioral design pattern that allows you to add new behavior to a set of classes without 
+changing their source code. The pattern allows you to define a new operation without changing the classes of the 
+elements on which it operates.
+"""
+
+class Element:
+    def accept(self, visitor):
+        pass
+
+class ConcreteElementA(Element):
+    def accept(self, visitor):
+        visitor.visit_concrete_element_a(self)
+
+class ConcreteElementB(Element):
+    def accept(self, visitor):
+        visitor.visit_concrete_element_b(self)
+
+class Visitor:
+    def visit_concrete_element_a(self, element):
+        pass
+    def visit_concrete_element_b(self, element):
+        pass
+
+class ConcreteVisitor1(Visitor):
+    def visit_concrete_element_a(self, element):
+        print("ConcreteVisitor1 visiting ConcreteElementA")
+    def visit_concrete_element_b(self, element):
+        print("ConcreteVisitor1 visiting ConcreteElementB")
+
+class ConcreteVisitor2(Visitor):
+    def visit_concrete_element_a(self, element):
+        print("ConcreteVisitor2 visiting ConcreteElementA")
+    def visit_concrete_element_b(self, element):
+        print("ConcreteVisitor2 visiting ConcreteElementB")
+
+elements = [ConcreteElementA(), ConcreteElementB()]
+visitor1 = ConcreteVisitor1()
+visitor2 = ConcreteVisitor2()
+
+for element in elements:
+    element.accept(visitor1)
+    element.accept(visitor2)
+
+
+"""
+In this example, the Element class is an interface for different elements, the ConcreteElementA 
+and ConcreteElementB classes are concrete implementations of the Element interface, and they define 
+the behavior of the Visitor class.
+
+The Visitor class defines a set of methods called visit, one for each type of element. 
+The ConcreteVisitor1 and ConcreteVisitor2 classes are concrete implementations of the Visitor interface, 
+and they define the behavior of the Element classes in different ways.
+
+The accept method of the Element class calls the corresponding visit method of the Visitor class. 
+The accept method of the Element class takes a Visitor object as an argument and calls the visit method of the 
+Visitor class, passing the Element object as an argument.
+
+The Visitor pattern is useful when you need to add new behavior to a set of classes without 
+changing their source code, and when you need to perform operations on a set of elements of different types. 
+It allows to separate the operation from the elements on which it operates, making it more readable and maintainable.
+
+It is a powerful way to add new behavior to a set of classes without changing their source code 
+and allows to separate the operation from the elements on which it operates, making it more readable and maintainable. 
+It provides flexibility, since new operations can be added to the elements in the future, without changing their source code.
+"""

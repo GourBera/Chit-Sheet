@@ -22,9 +22,29 @@
 # ============================== Singleton Design Patterns  ==============================
 
 """
-The Singleton pattern is a creational design pattern that ensures a class has only one instance while 
-providing a global access point to this instance. It is often useful when exactly one object is needed to 
+The Singleton pattern is a creational design pattern that ensures a class has only one instance while
+providing a global access point to this instance. It is often useful when exactly one object is needed to
 coordinate actions across the system.
+"""
+
+"""
+it can lead to tight coupling, hard-to-test code, and make the code less flexible
+
+Use cases:
+
+1. When a single instance of a class must control the action throughout an application. 
+For example, a logging class that writes to a single log file.
+2. When a single instance of a class must provide a unique service throughout an application. 
+For example, a configuration manager that holds the application's settings.
+3. When a single instance of a class must coordinate actions across the system. 
+For example, a single instance of a class that manages the connections to a database.
+4. When a single instance of a class is responsible for managing a shared resource. 
+For example, a thread pool that manages a fixed number of threads.
+5. When a single instance of a class is responsible for maintaining a shared state. 
+For example, a shopping cart class that maintains the items added by the user during an e-commerce application.
+6. When a single instance of a class is responsible for managing a shared cache. 
+For example, a class that maintains a cache of frequently used data in the memory to improve performance.
+
 """
 
 
@@ -36,9 +56,10 @@ class Singleton:
             cls._instance = super().__new__(cls)
         return cls._instance
 
+
 s1 = Singleton()
 s2 = Singleton()
-print(s1 is s2) # True
+print(s1 is s2)  # True
 
 
 """
@@ -49,21 +70,26 @@ assigns it to the _instance class variable.
 
 # Another way to implement the Singleton pattern in Python is to use a decorator:
 
+
 def singleton(cls):
     _instances = {}
+
     def get_instance():
         if cls not in _instances:
             _instances[cls] = cls()
         return _instances[cls]
+
     return get_instance
+
 
 @singleton
 class MySingleton:
     pass
 
+
 s1 = MySingleton()
 s2 = MySingleton()
-print(s1 is s2) # True
+print(s1 is s2)  # True
 
 """
 In this example, the singleton decorator takes a class as an argument, and 
@@ -81,7 +107,26 @@ to the parts of the system that need it.
 The Factory pattern is a creational design pattern that provides an interface for creating objects in a super class, 
 but allows subclasses to alter the type of objects that will be created. It's used to create objects without 
 specifying the exact class of object that will be created.
+
+Use cases:
+1. When a class can't anticipate the type of objects it needs to create. 
+For example, a class that reads data from a file and creates objects based on the data it reads.
+2. When a class wants to delegate responsibility for creating objects to its subclasses. 
+For example, a class that creates different types of vehicles, such as cars, trucks, and buses.
+3. When a class needs to create objects that belong to a class hierarchy. 
+For example, a class that creates different types of shapes, such as circles, rectangles, and triangles.
+4. When a class needs to create objects that are specified at runtime. 
+For example, a class that creates objects based on user input or configuration files.
+5. When a class needs to create objects that are expensive or time-consuming to create. 
+For example, a class that creates connections to a database or a network.
+6. When a class needs to create objects that have a limited lifespan. 
+For example, a class that creates objects that are used for a short period of time and then discarded.
+
+The Factory pattern is a powerful technique to create objects in a clean and maintainable way. 
+It allows you to encapsulate the object creation logic, making the code more flexible and reusable. 
+It also makes it easy to add new types of objects in the future, without affecting the existing code.
 """
+
 
 class Dog:
     def __init__(self, name):
@@ -90,6 +135,7 @@ class Dog:
     def speak(self):
         return "Woof!"
 
+
 class Cat:
     def __init__(self, name):
         self._name = name
@@ -97,9 +143,11 @@ class Cat:
     def speak(self):
         return "Meow!"
 
+
 def get_pet(pet="dog"):
     pets = dict(dog=Dog("Hope"), cat=Cat("Peace"))
     return pets[pet]
+
 
 d = get_pet("dog")
 print(d.speak())
@@ -114,6 +162,7 @@ determine which type of object to create and return. Here, it returns an instanc
 
 # Another way to implement the Factory pattern in Python is to use a Factory class
 
+
 class PetFactory:
     def __init__(self):
         self._pets = {}
@@ -125,6 +174,7 @@ class PetFactory:
         if pet_type not in self._pets:
             raise ValueError(f"Invalid pet_type: {pet_type}")
         return self._pets[pet_type](*args, **kwargs)
+
 
 factory = PetFactory()
 factory.register_pet("dog", Dog)
@@ -147,13 +197,34 @@ based on configuration or input data.
 """
 
 
-# ****************************** Behavioral Design Pattern ****************************** 
-# ============================== Observer Design Patterns  ============================== 
+# ****************************** Behavioral Design Pattern ******************************
+# ============================== Observer Design Patterns  ==============================
 """
 The Observer pattern is a behavioral design pattern that allows objects to be notified of changes in other objects. 
 It's used to establish a one-to-many relationship between objects, where one object (the subject) is being observed 
 by multiple other objects (the observers).
+
+Use Cases:
+
+1. When an application needs to be notified of changes to one or more objects. 
+For example, a stock market application that needs to be updated with the latest stock prices.
+2. When an application needs to perform an action when an event occurs. 
+For example, a chat application that sends a message to all connected clients when a new message is received.
+3. When an application needs to track the state of multiple objects. 
+For example, a weather forecasting application that tracks the temperature, humidity, and pressure in multiple locations.
+4. When an application needs to maintain consistency between multiple related objects. 
+For example, a spreadsheet application that updates the totals and averages when a value in a cell is changed.
+5. When an application needs to implement a publish/subscribe architecture. 
+For example, a social media application that notifies followers when a user posts a new message.
+6. When an application needs to implement a logging or auditing system. 
+For example, a system that logs all changes made to a database.
+
+The Observer pattern is a powerful technique to keep objects in sync and improve the overall cohesion of the system. 
+It enables loose coupling between objects and makes it easy to add new observers or change the behavior of existing ones. 
+However, it's important to be careful when using the pattern, as it can lead to high coupling and 
+performance issues if not implemented correctly.
 """
+
 
 class Subject:
     def __init__(self):
@@ -169,18 +240,21 @@ class Subject:
         for observer in self._observers:
             observer.update()
 
+
 class Observer:
     def update(self):
         pass
+
 
 class ConcreteObserver(Observer):
     def update(self):
         print("Received update notification")
 
+
 subject = Subject()
 observer = ConcreteObserver()
 subject.attach(observer)
-subject.notify() # "Received update notification"
+subject.notify()  # "Received update notification"
 
 
 """
@@ -195,10 +269,12 @@ from abc import ABC, abstractmethod
 from collections.abc import Iterable
 from collections import deque
 
+
 class Observer(ABC):
     @abstractmethod
     def update(self, *args, **kwargs):
         pass
+
 
 class Observable(Iterable):
     def __init__(self):
@@ -217,14 +293,16 @@ class Observable(Iterable):
     def __iter__(self):
         return iter(self._observers)
 
+
 class ConcreteObserver(Observer):
     def update(self, *args, **kwargs):
         print("Received update notification")
 
+
 subject = Observable()
 observer = ConcreteObserver()
 subject.register(observer)
-subject.notify() # "Received update notification"
+subject.notify()  # "Received update notification"
 
 """
 In this example, the Observable class implements the Iterable interface and it has methods to 
@@ -238,12 +316,13 @@ where objects need to be notified of events.
 """
 
 
-# ============================== Iterator Design Patterns ============================== 
+# ============================== Iterator Design Patterns ==============================
 """
 The Iterator pattern is a behavioral design pattern that allows you to traverse a collection of 
 objects without exposing the internal implementation of the collection. This pattern provides a way to 
 access the elements of an aggregate object sequentially without exposing its underlying representation.
 """
+
 
 class Iterator:
     def __init__(self, collection):
@@ -261,6 +340,7 @@ class Iterator:
         else:
             raise StopIteration
 
+
 class Collection:
     def __init__(self):
         self._items = []
@@ -270,6 +350,7 @@ class Collection:
 
     def iterator(self):
         return Iterator(self._items)
+
 
 collection = Collection()
 collection.add_item("item1")
@@ -298,24 +379,36 @@ collection's implementation and providing a consistent interface for traversing 
 """
 
 
-# ============================== State Design Patterns ============================== 
+# ============================== State Design Patterns ==============================
 """
 The State pattern is a behavioral design pattern that allows an object to change its behavior based on 
 its internal state. The pattern allows an object to have different behavior depending on its internal state, 
 without having to change its class.
+
+Use Cases:
+1. The UI state of a video player, like play, pause, stop, forward, backward etc.
+2. The state of a vending machine, like idle, waiting for coin, waiting for selection, dispensing item, dispensing change, etc.
+3. The state of an order, like received, processing, shipped, delivered, etc.
+4. The state of a connection, like disconnected, connecting, connected, etc.
+5. The state of a document editor, like read-only, editable, locked, etc.
+6. The state of a traffic light, like red, yellow, green etc.
 """
+
 
 class State:
     def handle(self):
         pass
 
+
 class StateA(State):
     def handle(self):
         print("Handling in State A")
 
+
 class StateB(State):
     def handle(self):
         print("Handling in State B")
+
 
 class Context:
     def __init__(self):
@@ -327,11 +420,12 @@ class Context:
     def handle(self):
         self._state.handle()
 
+
 context = Context()
 context.set_state(StateA())
-context.handle() # Handling in State A
+context.handle()  # Handling in State A
 context.set_state(StateB())
-context.handle() # Handling in State B
+context.handle()  # Handling in State B
 
 """
 In this example, the State class is an interface for different states, the StateA and StateB classes are 
@@ -350,42 +444,59 @@ if-else chains, and it allows to separate the code for each state, making it mor
 """
 
 
-# ============================== Visitor Design Patterns ============================== 
+# ============================== Visitor Design Patterns ==============================
 """
 The Visitor pattern is a behavioral design pattern that allows you to add new behavior to a set of classes without 
 changing their source code. The pattern allows you to define a new operation without changing the classes of the 
 elements on which it operates.
+
+Use Cases:
+1. The evaluation of a mathematical expression tree, where the operation (evaluation) is separate from the object structure (the tree).
+2. The printing of a document, where the operation (printing) is separate from the object structure (the document).
+3. The calculation of the total area of a geometric shape, where the operation (calculation) is separate from the object structure (the shape).
+4. The operation of displaying the elements of a composite pattern, where the operation (display) is separate from the object structure (the composite)
+5. The operation of a code compiler, where the operation (compiling) is separate from the object structure (the code)
 """
+
 
 class Element:
     def accept(self, visitor):
         pass
 
+
 class ConcreteElementA(Element):
     def accept(self, visitor):
         visitor.visit_concrete_element_a(self)
+
 
 class ConcreteElementB(Element):
     def accept(self, visitor):
         visitor.visit_concrete_element_b(self)
 
+
 class Visitor:
     def visit_concrete_element_a(self, element):
         pass
+
     def visit_concrete_element_b(self, element):
         pass
+
 
 class ConcreteVisitor1(Visitor):
     def visit_concrete_element_a(self, element):
         print("ConcreteVisitor1 visiting ConcreteElementA")
+
     def visit_concrete_element_b(self, element):
         print("ConcreteVisitor1 visiting ConcreteElementB")
+
 
 class ConcreteVisitor2(Visitor):
     def visit_concrete_element_a(self, element):
         print("ConcreteVisitor2 visiting ConcreteElementA")
+
     def visit_concrete_element_b(self, element):
         print("ConcreteVisitor2 visiting ConcreteElementB")
+
 
 elements = [ConcreteElementA(), ConcreteElementB()]
 visitor1 = ConcreteVisitor1()
@@ -419,20 +530,33 @@ It provides flexibility, since new operations can be added to the elements in th
 """
 
 
-# ****************************** Structural Design Pattern ****************************** 
-# ============================== Decorator Design Pattern  ============================== 
+# ****************************** Structural Design Pattern ******************************
+# ============================== Decorator Design Pattern  ==============================
 """
 The Decorator pattern is a structural design pattern that allows behavior to be added to an individual object, 
 either statically or dynamically, without affecting the behavior of other objects from the same class.
+
+Use Cases:
+1. The decoration of a coffee, where different ingredients can be added to the coffee to change its flavor and properties.
+2. The decoration of a car, where different accessories can be added to the car to change its appearance and functionality.
+3. The decoration of a text editor, where different features can be added to the text editor to change its functionality.
+4. The decoration of a window, where different border styles and colors can be added to the window to change its appearance.
+5. The decoration of a pizza, where different toppings can be added to the pizza to change its flavor and properties.
+
+It can be used to add new behavior to individual objects at runtime, without affecting the behavior 
+of other objects from the same class, and to add responsibilities to objects without affecting other objects.
 """
+
 
 class Component:
     def operation(self):
         pass
 
+
 class ConcreteComponent(Component):
     def operation(self):
         return "ConcreteComponent"
+
 
 class Decorator(Component):
     def __init__(self, component):
@@ -441,13 +565,16 @@ class Decorator(Component):
     def operation(self):
         return self._component.operation()
 
+
 class ConcreteDecoratorA(Decorator):
     def operation(self):
         return f"ConcreteDecoratorA({self._component.operation()})"
 
+
 class ConcreteDecoratorB(Decorator):
     def operation(self):
         return f"ConcreteDecoratorB({self._component.operation()})"
+
 
 component = ConcreteComponent()
 decoratorA = ConcreteDecoratorA(component)
@@ -470,16 +597,20 @@ which is a convenience decorator that allows the decorated function to be used a
 
 from functools import wraps
 
+
 def decorator(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         print("Decorated function")
         return func(*args, **kwargs)
+
     return wrapper
+
 
 @decorator
 def function():
     return "Function"
+
 
 print(function())
 
@@ -497,19 +628,38 @@ without changing the behavior of other widgets, or in systems where you need to 
 """
 The Facade pattern is a structural design pattern that provides a simplified interface to a complex system. 
 It hides the complexity of the system and provides a simple and easy-to-use interface to the client.
+
+Use Cases:
+1. A home theater system, where a single remote control can be used to control multiple devices such as a 
+television, DVD player, and sound system.
+2. An e-commerce website, where a single interface can be used to access multiple systems such as a 
+database, inventory management system, and payment gateway.
+3. A library system, where a single interface can be used to access multiple services such as 
+searching for books, reserving books, and renewing books.
+4. A banking system, where a single interface can be used to access multiple services such as 
+account balance, transfer funds, and pay bills.
+5. A video game, where a single interface can be used to access multiple systems such as graphics, sound, and input.
+
+It can be used to provide a simplified interface to a complex system, by hiding the complexity of a system behind a 
+single, easy-to-use interface, and provide a unified interface to a set of interfaces in a subsystem.
 """
+
 
 class SubsystemA:
     def operation1(self):
         pass
+
     def operation2(self):
         pass
+
 
 class SubsystemB:
     def operation1(self):
         pass
+
     def operation2(self):
         pass
+
 
 class Facade:
     def __init__(self):
@@ -519,6 +669,7 @@ class Facade:
     def operation(self):
         self._subsystem_a.operation1()
         self._subsystem_b.operation1()
+
 
 facade = Facade()
 facade.operation()

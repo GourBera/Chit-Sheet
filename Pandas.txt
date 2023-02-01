@@ -1,7 +1,9 @@
-﻿Bracket vs Dot Notation
+Bracket vs Dot Notation
 & vs |
 list(df)
 
+Count NA Value:
+	df.na().sum()
 
 Missing data handling:
 
@@ -14,20 +16,76 @@ replace()
 
 Combining, joining, merging:
 
-append(df2, ignore_index=True)
-*pd.concat([df1, df3], join={'inner','outer'},ignore_index )
-assign(new_col=func) => Assign new columns to a DataFrame.
-join(on=, how= {'left','right,'outer','inner'})
-merge(how=,on=,left_on=,right_on=)
-update()
+* ==> Merge
 
+	The merge method allows you to combine two DataFrames based on one or more common columns between them. It is similar to a SQL join.
+
+master = sales.merge(visits, how="inner", sort=True)	# how= {'left','right,'outer','inner'}
+master = pd.merge(
+    sales,
+    visits,
+    on=['country', 'Year', 'Month'],
+    suffixes=('_left', '_right'),
+    how="inner", 
+    sort=True)
+
+
+* ==> Join
+	The join method is a more convenient way to combine DataFrames based on their indexes.
+
+result = df1.join(df2) 	
+master = sales.join(
+    visits,
+    # Wont Work on=['country'],
+    lsuffix='_left',
+    rsuffix='_right',
+    how="inner",
+    sort=True)
+
+
+* ==> Append
+	used to concatenate two or more DataFrames along the row axis
+
+master = sales.append(visits, ignore_index=True, sort=True)
+
+
+* ==> Concat
+	pd.concat function to concatenate two or more DataFrames along a specified axis. 
+	By default, the axis parameter is set to 0, which means the DataFrames will be 
+	concatenated vertically, row-wise.
+
+master = pd.concat([sales, visits], ignore_index=True, sort=True, axis=0)
+
+
+* ==> assign(new_col=func) => Assign new columns to a DataFrame.
+	master = sales.assign(next_5_year = sales["Year"] + 5)
+
+	def next_cycle(value):
+	    return value + next_cycle_value
+
+	master = sales.assign(next_cycle = next_cycle(sales["Year"]))
+
+
+* => 	update()
+	The pd.update() method is used to update the values of one DataFrame with the values from another DataFrame
+
+
+* => 	Add a new column with same data
+	master["new_col"] = "hello,hello,hello"
 
 
 Functions:
 
-get_dummies(drop_first=)
-unique()
-nunique()
+* ==> get_dummies(drop_first=)
+	convert categorical variables into dummy/indicator variables
+
+	master = pd.get_dummies(master, columns=['country'], prefix='prefix')
+
+* ==> unique()
+	master["Month"].unique()
+
+* ==> nunique()
+	master["Month"].nunique()
 
 
 
@@ -67,10 +125,6 @@ get_dtype_counts()
 
 df.isin([0, 2])
 df.isin({'num_wings': [0, 3]})
-
-filter = df.col.isin([col1, col2])
-df[filter]
-
 
 
 
@@ -170,6 +224,8 @@ value_counts(normalize = True) => returns the %
 a = np.array([1,2,3,4])
 b = np.array([5,6,7,8])
 np.column_stack((a,b)) #[[1,5],[2,6],[3,7],[4,8]]
+
+
 
 
 

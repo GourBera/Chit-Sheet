@@ -1,0 +1,5 @@
+* Kubeflow vs ML Flow vs Airflow
+* Advantages of Kubernetes and important concepts
+* Challenges of ML at scale
+* Model versioning, tracking, hyper parameters, logging, deployment, serving
+* Resource Management, Dash board

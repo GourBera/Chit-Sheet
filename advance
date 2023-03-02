@@ -28,7 +28,7 @@ def func(x):
 new = func(1)
 new()
 
-
+# Helps to inspect any class, like view class members, view source code etc.
 import inspect
 from queue import Queue
 

@@ -1,3 +1,13 @@
+Threading - https://www.youtube.com/watch?v=rmxjR79NhbE&list=PLI4OVrCFuY57b_16D8xs7-hmABHncVD_w&index=17
+
+gRPC - Remote Procedure Call
+  * Open-source - by Google
+  * gRPC vs REST
+  * on top of HTTP2
+  * Language independent
+  * Fast and Efficient
+
+
 def MakeClass(x):
   class Human:
     def __init__(self, name):

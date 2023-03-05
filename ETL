@@ -1,0 +1,18 @@
+ETL Design Pattern
+
+1. Source System (ETL code in source system) --> Target DWH
+2. Source System --> Target DWH (ETL code in source system)
+3. Source System --> ETL Server (ETL code in ETL Server ) --> Target DWH 
+4. Source System --> ETL Server (ETL code in ETL Server and transformation on Staging Server) --> Target DWH 
+5. Source System --> ETL Server (ETL code in ETL Server and In-Memory transformation) --> Target DWH 
+
+
+Push vs Pull
+  1. Trigger based push
+  2. Schedule based push
+  vs
+  1. Schedule based pull
+  2. Logs based pull
+
+
+Reference: https://www.youtube.com/@SoftwareArchitectureAcademy/playlists

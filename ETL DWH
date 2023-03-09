@@ -5,6 +5,7 @@ ETL Design Pattern
 3. Source System --> ETL Server (ETL code in ETL Server ) --> Target DWH 
 4. Source System --> ETL Server (ETL code in ETL Server and transformation on Staging Server) --> Target DWH 
 5. Source System --> ETL Server (ETL code in ETL Server and In-Memory transformation) --> Target DWH 
+6. Source System --> ETL code in AWS Lambda --> Target DWH 
 
 
 Push vs Pull

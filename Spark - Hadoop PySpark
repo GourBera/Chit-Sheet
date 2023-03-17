@@ -1,1 +1,90 @@
 
+
+master - Orchestrating the task across the cluster
+worker - performing the actual task
+
+Hadoop Framework
+    1. HDFS - Data Storage (Hadoop Distributed File System)
+    2. Map Reduce - Data Processing
+    3. YARN - Resource Manager
+    4. Hadoop Common - Utilities
+Other Big Data Project
+    5. Apache PIG - SQL for Map Reduce
+    6. Apache HIVE - SQL for Map Reduce
+
+New Distributed Data Technology
+    7. Apache SPARK -
+        * Much faster than MapReduce | Written in Scala
+        * Immutable - Does not modify the original Data
+        * Use Lazy Evaluation using DAG (Directed Acyclical Graph)
+        * In-Memory processing
+
+    8. Apache STORM - Streaming Data
+    9. Apache FLINK - Streaming Data
+
+Spark Modes
+    1. Local Mode - in single machine (prototype project)
+    2.  Cluster Manager
+        * Cluster modes =>
+            1. Standalone
+            2. YARN
+            3. Mesos
+
+
+Spark Component
+    1. SparkContext
+        - Main Entry point for spark functionality
+        - Connects Cluster with Application
+
+from pyspark import SparkContext, SparkConf
+
+configure = SparkConf().setAppName("myApp").setMaster("IP Address")
+configure = SparkConf().setAppName("myApp").setMaster("local")
+
+sc = SparkContext(conf=configure)
+
+==> To Read DF
+from pyspark.sql import SparkSession
+
+spark = SparkSession \
+        .builder \
+        .appName("myApp") \
+        .config("config option", "config value")
+        .getOrCreate()
+
+spark.sparkContext.getConf().getAll()
+
+path = "hdfs://....json()"
+user_log = spark.read.json(path)
+user_log = spark.read.csv(path, header=True)
+user_log.printSchema()
+user_log.describe()
+user_log.show(n=5)
+user_log.take(n=5)
+user_log.head (n=5)
+user_log.write.csv("output_path", format="csv", header=True)
+
+==> Functions
+    - user_log.select("col1").dropDuplicates().sort("col1").show()
+    - user_log.select(["col1", "col2"]).where(user_log.userId == "1001").collect()
+    - user_log.dropna(how="any", subset = ["col1", "col2"])
+    - user_log.count()
+    - user_log.filter(user_log["col1"] != "")
+    - user_log.filter("col1 = 'hello!'")
+    * cumulative
+    from pyspark.sql import Window
+    value = Window.partitionBy("userId").orderBy(desc("start_time")).rangeBetween(Window.unboundedPreceding, 0)
+    user_log_value = user_log.withColumn("col1", Fsum("col2").over(value))
+
+
+
+
+
+==> User Defined Function
+    - get_hour = udf(lambda x: datetime.fromtimestamp(x/1000.0).hour)
+    - user_log = user_log.withColumn("hour", get_hour(user_log.start_time))
+
+
+Imperative vs Declarative Programming
+    - pyspark vs SQL
+    - how vs what

@@ -1,0 +1,31 @@
+* Gradient descent: 
+    A widely used optimization algorithm that iteratively updates the parameters of a model by taking small steps in the
+    direction of the negative gradient of the objective function.
+
+* Genetic algorithms:
+    An evolutionary algorithm that mimics the process of natural selection to search for optimal solutions to a problem.
+
+* Particle swarm optimization:
+    An optimization technique that simulates the behavior of a swarm of particles moving in a search space to find the global minimum of an objective function.
+
+* Simulated annealing:
+    An optimization algorithm that uses a stochastic process inspired by the physical process of annealing to search for optimal solutions.
+
+* Ant colony optimization:
+    An optimization technique that simulates the behavior of ant colonies to search for optimal solutions.
+
+* Tabu search:
+    A metaheuristic optimization algorithm that uses a memory-based search to avoid revisiting previously explored solutions.
+
+* Bayesian optimization:
+    An optimization algorithm that uses a probabilistic model to balance exploration and exploitation in the search space.
+
+* Differential evolution:
+  An evolutionary algorithm that optimizes a population of candidate solutions by generating new solutions using a difference operator.
+
+* Hill climbing:
+    An iterative optimization algorithm that moves towards the optimal solution by making small incremental changes to the current solution.
+
+
+
+

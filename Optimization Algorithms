@@ -28,4 +28,103 @@
 
 
 
+#================================================================================================================================================
+
+==> Gradient descent:
+
+import numpy as np
+
+def gradient_descent(X, y, alpha=0.01, num_iters=1000):
+    m, n = X.shape
+    theta = np.zeros((n, 1))
+
+    for i in range(num_iters):
+        h = np.dot(X, theta)
+        loss = h - y
+        gradient = np.dot(X.T, loss) / m
+        theta = theta - alpha * gradient
+
+    return theta
+
+
+import numpy as np
+
+# Create some sample data
+X = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+y = np.array([[3], [7], [11]])
+
+# Call the gradient descent function
+theta = gradient_descent(X, y, alpha=0.01, num_iters=1000)
+
+# Print the learned parameters
+print(theta)
+
+
+In this example, we create a 3x3 matrix X and a 3x1 vector y to represent our input features and 
+output,respectively. We then call the gradient_descent function with a learning rate of 0.01 and 
+1000 iterations. Finally, we print the learned parameters theta. Note that the X matrix should be 
+normalized before applying gradient descent to prevent numerical instability.
+
+
+if we have new data with features x1=2 and x2=3, we can plug them into the equation with the 
+learned parameters to get the predicted output:
+
+y = 0.28005694 + 0.44466654*2 + 0.60927614*3
+y = 2.9529837
+
+print(theta[0, 0] + theta[1, 0]*2 + theta[2, 0]*3)
+print(theta[0, 0])
+print(theta[1, 0])
+print(theta[2, 0])
+
+
+Challenges => 
+1. Learning rate is too large:
+ If the learning rate is too large, the algorithm may overshoot the minimum of the objective function and fail to converge.
+
+2. Learning rate is too small:
+ If the learning rate is too small, the algorithm may converge too slowly or get stuck in a local minimum.
+
+3. Non-convex objective function:
+ If the objective function is non-convex, i.e., has multiple local minima, the algorithm may get stuck in a suboptimal local minimum instead of the global minimum.
+
+4. Features are highly correlated:
+ If the input features are highly correlated, the algorithm may converge slowly or oscillate around the minimum of the objective function.
+
+5. Outliers:
+ If there are outliers in the data, the algorithm may be sensitive to them and fail to converge to a good solution.
+
+Application
+* Machine learning:
+ Gradient descent is extensively used in machine learning for training models such as linear regression, logistic regression, neural networks, and support vector machines. In these applications, the objective is to minimize the cost function by adjusting the parameters of the model using gradient descent.
+
+* Computer vision:
+ Gradient descent is used in computer vision applications such as image segmentation, object detection, and recognition. In these applications, gradient descent is used to optimize the parameters of the model to achieve the desired output.
+
+* Natural language processing:
+ Gradient descent is used in natural language processing applications such as sentiment analysis, text classification, and machine translation. In these applications, gradient descent is used to train models to classify or generate text based on the input.
+
+* Robotics:
+ Gradient descent is used in robotics applications for motion planning, control, and optimization. In these applications, gradient descent is used to find the optimal trajectory for the robot to follow in order to achieve the desired task.
+
+* Recommender systems:
+ Gradient descent is used in recommender systems to optimize the recommendations made to users based on their preferences and past behavior. In these applications, gradient descent is used to optimize the parameters of the recommendation algorithm.
+ 
+Limitations
+* Non-convex optimization problems:
+ Gradient descent may get stuck in a local minimum in non-convex optimization problems, making it difficult to find the global minimum.
+
+* Noisy data:
+ If the data is noisy, gradient descent may converge to a suboptimal solution or fail to converge altogether.
+
+* Computationally expensive objective functions:
+ Gradient descent may be too computationally expensive for complex objective functions, making it impractical to use for large-scale problems.
+
+
+
+
+
+
+
+
 

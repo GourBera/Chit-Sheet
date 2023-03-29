@@ -1,0 +1,24 @@
+import numpy as np
+
+
+data1 = None
+data2 = "Null"
+data3 = ""
+data4 = 0
+data5 = 0.0
+data6 = np.nan
+
+
+# print(f"data1 => {data1} ==> {type(data1)} ==> {int(data1)}")
+# print(f"data2 => {data2} ==> {type(data2)} ==> {int(data2)}")
+# print(f"data3 => {data3} ==> {type(data3)} ==> {int(data3)}")
+print(f"data4 => {data4} ==> {type(data4)} ==> {int(data4)}")
+print(f"data5 => {data5} ==> {type(data5)} ==> {int(data5)}")
+# print(f"data6 => {data6} ==> {type(data6)} ==> {int(data6)}")
+
+# print(f"data1 => {data1} ==> {type(data1)} ==> {float(data1)}")
+# print(f"data2 => {data2} ==> {type(data2)} ==> {float(data2)}")
+# print(f"data3 => {data3} ==> {type(data3)} ==> {float(data3)}")
+print(f"data4 => {data4} ==> {type(data4)} ==> {float(data4)}")
+print(f"data5 => {data5} ==> {type(data5)} ==> {float(data5)}")
+print(f"data6 => {data6} ==> {type(data6)} ==> {float(data6)}")

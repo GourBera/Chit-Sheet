@@ -1,0 +1,97 @@
+Redshift vs BigQuery vs Teradata
+perquet file format
+
+Advantages
+  -> Massively parallal computing
+  -> Columner data store
+  -> partition based on column
+  
+
+UseCases
+  -> Find Total Sales
+  -> Find Total Customers
+  
+  
+Architecture
+Client Application -> [JDBC/ODBC/endpoint] -> Leader Node -> Compute Node -> [Node Slices]
+
+Leader Node:
+  -> Coordinate compute Nodes
+  -> Handle external communication
+  -> Optimize query execution
+  
+Compute Node:
+  -> Each with own CPU, Memory and Disk space
+  -> Scale up - get more powerful nodes
+  -> scale out - get more nodes
+  
+Node Slices:
+  -> Each Compute Node locally divided into number of slices
+  -> Each cluster with n slices process n partition of a table simultaneously
+  
+  
+  
+COPY Command
+  -> Syntax: COPY table_name FROM Data_Source authorization;
+  
+  copy Employee from 's3://datalakes/employee/employee_pipe.txt' iam_role 'arn:aws:iam::<aws-account-id>:role/<role-name>' region 'us-west-2'
+  
+  
+Python:
+
+import redshift_connector
+conn = redshift_connector.connect(
+     host='examplecluster.abc123xyz789.us-west-1.redshift.amazonaws.com',
+     database='dev',
+     port=5439,
+     user='awsuser',
+     password='my_password')
+  
+cursor = conn.cursor()
+cursor.execute("""
+  copy Employee 
+  from 's3://datalakes/employee/employee_pipe.txt' 
+  iam_role 'arn:aws:iam::<aws-account-id>:role/<role-name>' 
+  delimiter '|'
+  region 'us-west-2'""")
+  
+cursor.execute("select * from Employee LIMIT 10;")                
+result: tuple = cursor.fetchall()
+print(result)
+
+
+Optimization
+  1. Distribution Style
+  2. Sorting Key
+  3. Vacuum - remove deleted rows and free up disk space | VACUUM sales;
+  4. Compression - [LZO, Snappy, Zstandard]
+  
+  
+* ==> Sorting Key
+
+create table sales(
+  date datetime not null,
+  region datetime not null,
+  country varchar not null)
+distkey(date)
+sortkey(date);
+
+                
+* ==> Distribution Key (solve data skew problem)
+CREATE TABLE sales (
+   sale_id INT,
+   product_id INT,
+   sale_date DATE,
+   sale_amount DECIMAL(10,2))
+DISTKEY(product_id)
+COMPRESSION 'LZO'; 
+
+
+
+
+
+  
+  
+  
+  
+  

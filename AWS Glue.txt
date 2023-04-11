@@ -1,10 +1,3 @@
-
-lamp - 40 20K
-tar 5K
-switch - 30 - 80 = 3K
-plate - 40 - 
-
-
 1. create data source for aws glue
 2. crawl the data source to the data catalog
 3. the crawled metadata in glue tables
@@ -15,38 +8,35 @@ plate - 40 -
 Crawlers - connets to a data store, process through a prioritized list of classifiers to determine the schema and creates metadata tables in data catalog
 Job - business logic required to perform ETL work, initiated by triggers which can be scheduled or events driven
 
-
-
 Athena
-Serverless interactive query system - no need server, scale up or down, parallel queries, we can use weak query language(SQL, Oracle etc), support various file format, only pay for quering the data
-can query structure, un, semi data format
-integrate with Glue (ETL tool) and QuickSight (Data Visualization tool with interactive dashboards)
+  -> Serverless interactive query system - no need server, scale up or down, parallel queries, we can use weak query language(SQL, Oracle etc), 
+  support various  file format, only pay for quering the data
+  -> can query structure, un, semi data format
+  -> Integrate with Glue (ETL tool) and QuickSight (Data Visualization tool with interactive dashboards)
 
 
 supported format:
-CSV, JSON, Avro, ORC(columnar), Parquet(columnar)
+  CSV, JSON, Avro, ORC(columnar), Parquet(columnar)
 
 Use cases:
-Analyze any kind of AWS logs - CloudTrail/CloudFront/VPC/ELB logs also Tomcat logs or LK stack logs
-Integration with other visualization tool using ODBC/JDBC
-Ad-hoc logs analysis 
+  -> Analyze any kind of AWS logs - CloudTrail/CloudFront/VPC/ELB logs also Tomcat logs or LK stack logs
+  -> Integration with other visualization tool using ODBC/JDBC
+  -> Ad-hoc logs analysis 
 
 
 Cost Model:
-USD 5 per TB data scanned
-charged the number of bytes scanned with min of 10MB per query
-No charge for DDL (Create, alter, drop) and failed queries
-charges for cancelled queries (for the data scanned only)
+  -> USD 5 per TB data scanned
+  -> charged the number of bytes scanned with min of 10MB per query
+  -> No charge for DDL (Create, alter, drop) and failed queries
+  -> charges for cancelled queries (for the data scanned only)
 
 how to save cost:
-using columnar formats (perquet, ORC)
-using partitions like where clause
-use compression (gzip, snappy)
-optimization on file size between 10-40MB per file
-support federated query - example combine the results from multiple data sources like DynamoDB or other
+  -> using columnar formats (perquet, ORC)
+  -> using partitions like where clause
+  -> use compression (gzip, snappy)
+  -> optimization on file size between 10-40MB per file
+  -> support federated query - example combine the results from multiple data sources like DynamoDB or other
 
 Issue:
-not supported stored procedures, certain ddl operations
-
-
+  not supported stored procedures, certain ddl operations
 

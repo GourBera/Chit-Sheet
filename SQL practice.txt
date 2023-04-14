@@ -63,4 +63,15 @@ SELECT Gender, case when Gender='i' then 'U'
   
   
   ALTER TABLE Emp ADD FOREIGN KEY (process_fk) REFERENCES process(emp_id) ON DELETE CASCADE;
+  
+  
+***********************************************************************************************
+SELECT ROW_NUMBER() OVER(ORDER BY column1) AS row_num, column1, column2
+FROM my_table; [1, 2, 3, 4, 5]
+
+SELECT RANK() OVER(ORDER BY column1) AS rank, column1, column2
+FROM my_table; [1, 1, 3, 3, 5]
+
+SELECT DENSE_RANK() OVER(ORDER BY column1) AS dense_rank, column1, column2
+FROM my_table; [1, 1, 2, 2, 3]  
 

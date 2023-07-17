@@ -1,1 +1,25 @@
 https://docs.greatexpectations.io/docs/tutorials/quickstart/
+
+pip install great_expectations
+
+
+
+import great_expectations as gx
+
+
+context = gx.get_context()
+
+validator = context.sources.pandas_default.read_csv("sample.csv")
+validator.expect_column_values_to_not_be_null("col_name")
+validator.expect_column_values_to_be_between("col_name", auto=True)
+validator.save_expectation_suite("sample.json")
+
+result = validator.validate()
+print(result)
+
+checkpoint = context.add_or_update_checkpoint(
+    name="quickstart_checkpoint",
+    validator=validator,)
+checkpoint_result = checkpoint.run()
+context.view_validation_result(checkpoint_result)
+

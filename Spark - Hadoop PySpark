@@ -1,4 +1,4 @@
-
+https://spark.apache.org/docs/latest/api/python/index.html
 
 master - Orchestrating the task across the cluster
 worker - performing the actual task

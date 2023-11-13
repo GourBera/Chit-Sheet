@@ -85,6 +85,38 @@ user_log.write.csv("output_path", format="csv", header=True)
     - user_log = user_log.withColumn("hour", get_hour(user_log.start_time))
 
 
-Imperative vs Declarative Programming
+==> Imperative vs Declarative Programming
     - pyspark vs SQL
     - how vs what
+
+==> Differentiate between transformations and actions in Spark
+    - map, filter, flatMap | collect, count, reduce
+
+rdd = sc.parallelize([1, 2, 3, 4, 5])
+squared_rdd = rdd.map(lambda x: x**2)
+print(squared_rdd.collect())  # Output: [1, 4, 9, 16, 25]
+
+# DataFrame Example
+df = spark.createDataFrame([(1, "John"), (2, "Jane"), (3, "Doe")], ["id", "name"])
+uppercase_df = df.withColumn("name", F.upper(df["name"]))
+uppercase_df.show()
+
+df = spark.createDataFrame([(1, "John"), (2, "Jane"), (3, "Doe")], ["id", "name"])
+filtered_df = df.filter(df["id"] % 2 == 0)
+filtered_df.show()
+
+df = spark.createDataFrame([(1, "apple,orange"), (2, "banana,grape")], ["id", "fruits"])
+exploded_df = df.withColumn("fruit", F.explode(F.split(df["fruits"], ",")))
+exploded_df.show()
+
+# RDD Example
+rdd = sc.parallelize([1, 2, 3, 4, 5])
+sum_result = rdd.reduce(lambda x, y: x + y)
+print(sum_result)  # Output: 15
+
+# DataFrame Example (using agg)
+df = spark.createDataFrame([(1, "John"), (2, "Jane"), (3, "Doe")], ["id", "name"])
+sum_result = df.agg(F.sum(df["id"])).collect()[0][0]
+print(sum_result)
+
+
